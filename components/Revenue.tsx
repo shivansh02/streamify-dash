@@ -61,12 +61,12 @@ export function Revenue() {
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Pie Chart with Legend and Hover</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[300px]"
+          className="mx-auto aspect-square max-h-[280px]"
         >
           <PieChart>
             <ChartTooltip
@@ -91,7 +91,7 @@ export function Revenue() {
           Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing Total visitors for the last 6 months
         </div> */}
       </CardFooter>
     </Card>

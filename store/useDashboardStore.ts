@@ -18,13 +18,14 @@ type RevenueData = {
 
 type UserGrowthData = {
   date: string
-  users: number
+  Total: number
+  Active: number
 }
 
 interface DashboardState {
-  totalUsers: number
-  activeUsers: number
-  totalStreams: number
+  TotalUsers: number
+  ActiveUsers: number
+  TotalStreams: number
   revenue: number
   topArtist: string
   userGrowthData: UserGrowthData[]
@@ -38,12 +39,21 @@ interface DashboardState {
 }
 
 const dummyUserGrowthData: UserGrowthData[] = [
-  { date: '2024-01', users: 8000000 },
-  { date: '2024-02', users: 8500000 },
-  { date: '2024-03', users: 9000000 },
-  { date: '2024-04', users: 9500000 },
-  { date: '2024-05', users: 10002020 },
-]
+  { date: "2023-07-14", Total: 10500, Active: 7800 },
+  { date: "2023-08-01", Total: 10200, Active: 6200 },
+  { date: "2023-09-18", Total: 11800, Active: 8700 },
+  { date: "2023-10-22", Total: 12500, Active: 9100 },
+  { date: "2023-11-11", Total: 10200, Active: 11500 },
+  { date: "2023-12-07", Total: 14800, Active: 9900 },
+  { date: "2024-01-03", Total: 14500, Active: 10300 },
+  { date: "2024-02-14", Total: 17200, Active: 15800 },
+  { date: "2024-03-21", Total: 12800, Active: 10200 },
+  { date: "2024-04-30", Total: 16500, Active: 11700 },
+  { date: "2024-05-19", Total: 17200, Active: 9100 },
+  { date: "2024-06-25", Total: 17800, Active: 12600 },
+  { date: "2024-07-08", Total: 20500, Active: 13000 },
+  { date: "2024-08-30", Total: 19200, Active: 13500 },
+];
 
 const dummyRevenuePieChartData: RevenueData[] = [
   { category: 'Subscriptions', value: 7500000 },
@@ -61,9 +71,9 @@ const dummyMostStreamedSongs: Song[] = [
 ]
 
 export const useDashboardStore = create<DashboardState>((set) => ({
-  totalUsers: 0,
-  activeUsers: 0,
-  totalStreams: 0,
+  TotalUsers: 0,
+  ActiveUsers: 0,
+  TotalStreams: 0,
   revenue: 0,
   topArtist: '',
   userGrowthData: [],
@@ -76,11 +86,11 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   setMostStreamedSongs: (songs) => set({ mostStreamedSongs: songs }),
 
   initializeWithDummyData: () => set({
-    totalUsers: 10002020,
-    activeUsers: 10002020,
-    totalStreams: 10002020,
-    revenue: 10002020,
-    topArtist: 'Talor sift',
+    TotalUsers: 10002020,
+    ActiveUsers: 10002020,
+    TotalStreams: 121000,
+    revenue: 8020,
+    topArtist: 'Drake',
     userGrowthData: dummyUserGrowthData,
     revenuePieChartData: dummyRevenuePieChartData,
     mostStreamedSongs: dummyMostStreamedSongs,

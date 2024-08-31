@@ -21,16 +21,16 @@ import {
 export const description = "A mixed bar chart"
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+  { browser: "chrome", streams: 27005, fill: "var(--color-chrome)" },
+  { browser: "safari", streams: 20000, fill: "var(--color-safari)" },
+  { browser: "firefox", streams: 18007, fill: "var(--color-firefox)" },
+  { browser: "edge", streams: 17003, fill: "var(--color-edge)" },
+  { browser: "other", streams: 9000, fill: "var(--color-other)" },
 ]
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "Streams",
   },
   chrome: {
     label: "Chrome",
@@ -59,7 +59,7 @@ export function TopStreamed() {
     <Card>
       <CardHeader>
         <CardTitle>Bar Chart - Mixed</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        {/* <CardDescription>January - June 2024</CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -70,6 +70,7 @@ export function TopStreamed() {
             margin={{
               left: 0,
             }}
+            className="p-4"
           >
             <YAxis
               dataKey="browser"
@@ -81,12 +82,12 @@ export function TopStreamed() {
                 chartConfig[value as keyof typeof chartConfig]?.label
               }
             />
-            <XAxis dataKey="visitors" type="number" hide />
+            <XAxis dataKey="streams" type="number" hide />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
             />
-            <Bar dataKey="visitors" layout="vertical" radius={5} />
+            <Bar dataKey="streams" layout="vertical" radius={5} />
           </BarChart>
         </ChartContainer>
       </CardContent>
