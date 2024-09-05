@@ -6,7 +6,6 @@ import { Bar, BarChart, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -17,19 +16,11 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { useDashboardStore } from "@/store/useDashboardStore"
 
-export const description = "A mixed bar chart"
-
-const chartData = [
-  { browser: "chrome", streams: 27005, fill: "var(--color-chrome)" },
-  { browser: "safari", streams: 20000, fill: "var(--color-safari)" },
-  { browser: "firefox", streams: 18007, fill: "var(--color-firefox)" },
-  { browser: "edge", streams: 17003, fill: "var(--color-edge)" },
-  { browser: "other", streams: 9000, fill: "var(--color-other)" },
-]
 
 const chartConfig = {
-  visitors: {
+  streams: {
     label: "Streams",
   },
   chrome: {
@@ -55,31 +46,33 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function TopStreamed() {
+  const { mostStreamedSongs } = useDashboardStore((state) => ({
+    mostStreamedSongs: state.mostStreamedSongs,
+  }))
+
   return (
-    <Card>
+    <Card className="p-4">
       <CardHeader>
-        <CardTitle>Bar Chart - Mixed</CardTitle>
-        {/* <CardDescription>January - June 2024</CardDescription> */}
+        <CardTitle>Top Streamed Songs</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="h-4/5 w-4/5">
         <ChartContainer config={chartConfig}>
           <BarChart
-            accessibilityLayer
-            data={chartData}
+            data={mostStreamedSongs}
             layout="vertical"
             margin={{
               left: 0,
             }}
-            className="p-4"
+            className="p-2"
           >
             <YAxis
-              dataKey="browser"
+              dataKey="title"
               type="category"
               tickLine={false}
               tickMargin={10}
               axisLine={false}
               tickFormatter={(value) =>
-                chartConfig[value as keyof typeof chartConfig]?.label
+                value
               }
             />
             <XAxis dataKey="streams" type="number" hide />

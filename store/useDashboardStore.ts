@@ -6,14 +6,16 @@ type Artist = {
 }
 
 type Song = {
-  title: string
-  artist: string
+  title: string 
+  artist: string 
   streams: number
+  fill?: string
 }
 
 type RevenueData = {
-  category: string
-  value: number
+  browser: string
+  visitors: number
+  fill?: string
 }
 
 type UserGrowthData = {
@@ -51,24 +53,25 @@ const dummyUserGrowthData: UserGrowthData[] = [
   { date: "2024-04-30", Total: 16500, Active: 11700 },
   { date: "2024-05-19", Total: 17200, Active: 9100 },
   { date: "2024-06-25", Total: 17800, Active: 12600 },
-  { date: "2024-07-08", Total: 20500, Active: 13000 },
+  { date: "2024-07-20", Total: 20500, Active: 13000 },
   { date: "2024-08-30", Total: 19200, Active: 13500 },
 ];
 
-const dummyRevenuePieChartData: RevenueData[] = [
-  { category: 'Subscriptions', value: 7500000 },
-  { category: 'Advertisements', value: 2000000 },
-  { category: 'Merchandise', value: 500000 },
-  { category: 'Other', value: 2020 },
-]
+const dummyRevenue: RevenueData[] = [
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+];
 
 const dummyMostStreamedSongs: Song[] = [
-  { title: 'Shake It Off', artist: 'Talor sift', streams: 1500000 },
-  { title: 'Blinding Lights', artist: 'The Weekend', streams: 1400000 },
-  { title: 'Shape of You', artist: 'Ed Sheeran', streams: 1300000 },
-  { title: 'Dance Monkey', artist: 'Tones and I', streams: 1200000 },
-  { title: 'Someone Like You', artist: 'Adele', streams: 1100000 },
-]
+  { title: 'Tailwhip', artist: 'MenITrust', streams: 1500000, fill: "var(--color-chrome)" },
+  { title: 'Bodys', artist: 'CSH', streams: 1400000, fill: "var(--color-safari)" },
+  { title: 'Flowers', artist: 'PCRC', streams: 1000000, fill: "var(--color-firefox)" },
+  { title: 'Solo', artist: 'Frank Ocean', streams: 950000, fill: "var(--color-edge)" },
+  { title: 'Queen', artist: 'Clairo', streams: 850000, fill: "var(--color-other)" },
+];
 
 export const useDashboardStore = create<DashboardState>((set) => ({
   TotalUsers: 0,
@@ -88,11 +91,11 @@ export const useDashboardStore = create<DashboardState>((set) => ({
   initializeWithDummyData: () => set({
     TotalUsers: 10002020,
     ActiveUsers: 10002020,
-    TotalStreams: 121000,
+    TotalStreams: 31121000,
     revenue: 8020,
     topArtist: 'Drake',
     userGrowthData: dummyUserGrowthData,
-    revenuePieChartData: dummyRevenuePieChartData,
+    revenuePieChartData: dummyRevenue,
     mostStreamedSongs: dummyMostStreamedSongs,
   }),
-}))
+}));

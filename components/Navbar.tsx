@@ -3,7 +3,7 @@ import { Moon, Sun, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -25,4 +25,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+

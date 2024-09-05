@@ -7,7 +7,7 @@ interface MetricCardProps {
   icon?: React.ReactNode;
 }
 
-const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon }) => {
+export const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon }) => {
   return (
     <Card className="bg-card text-card-foreground shadow-md h-18 p-2 ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -23,4 +23,4 @@ const MetricCard: React.FC<MetricCardProps> = ({ title, value, icon }) => {
   );
 };
 
-export default MetricCard;
+

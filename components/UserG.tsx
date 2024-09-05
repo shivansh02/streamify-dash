@@ -18,8 +18,6 @@ import {
 } from "@/components/ui/chart"
 import { useDashboardStore } from "@/store/useDashboardStore"
 
-// export const description = "An interActive line chart"
-
 const chartConfig = {
   views: {
     label: "Page Views",
@@ -49,39 +47,41 @@ export function UserGrowth() {
   )
 
   return (
-    <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row h-16">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          {/* <CardTitle>Line Chart - InterActive</CardTitle> */}
-          <CardDescription>
+    <Card className="w-full max-w-full max-h-60">
+      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
+        <div className="flex flex-1 flex-col justify-center gap-1 px-4 py-3 sm:px-6 sm:py-5">
+          <CardTitle className="text-base sm:text-lg font-semibold">
+            User Growth Overview
+          </CardTitle>
+          <CardDescription className="text-sm sm:text-base">
             Total/Active users for the last 12 months
           </CardDescription>
         </div>
-        <div className="flex">
+        <div className="flex flex-wrap sm:flex-nowrap w-full sm:w-auto">
           {["Total", "Active"].map((key) => {
             const chart = key as keyof typeof chartConfig
             return (
               <button
                 key={chart}
-                data-Active={ActiveChart === chart}
-                className="flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l data-[Active=true]:bg-muted/50 sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                data-active={ActiveChart === chart}
+                className="flex flex-1 flex-col justify-center items-start gap-1 border-t px-4 py-3 sm:px-6 sm:py-4 sm:items-center sm:border-l data-[active=true]:bg-muted/50"
                 onClick={() => setActiveChart(chart)}
               >
                 <span className="text-xs text-muted-foreground">
-                  {chartConfig[chart].label}
+                  {chartConfig[chart]?.label}
                 </span>
-                <span className="text-lg font-bold leading-none sm:text-3xl">
-                  {Total[key as keyof typeof Total].toLocaleString()}
+                <span className="text-lg font-bold leading-none sm:text-2xl">
+                  {Total[chart as keyof typeof Total]?.toLocaleString()}
                 </span>
               </button>
             )
           })}
         </div>
       </CardHeader>
-      <CardContent className="px-2 sm:p-4">
+      <CardContent className="px-2 sm:px-4 py-4">
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-[200px] w-full"
+          className="aspect-w-16 aspect-h-9 max-h-28 w-full"
         >
           <LineChart
             accessibilityLayer
@@ -90,6 +90,7 @@ export function UserGrowth() {
               left: 12,
               right: 12,
             }}
+            className="w-full h-full"
           >
             <CartesianGrid vertical={false} />
             <XAxis

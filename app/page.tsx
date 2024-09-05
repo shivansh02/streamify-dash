@@ -1,12 +1,9 @@
-
-
-"use client";
-import React from 'react';
-import { useEffect } from 'react';
-import MetricCard from '@/components/MetricCard';
+"use client"
+import React, { useEffect } from 'react';
+import {MetricCard} from '@/components/MetricCard';
 import { Play, DollarSign, User } from 'lucide-react';
 import { useDashboardStore } from '@/store/useDashboardStore';
-import Navbar from '@/components/Navbar';
+import {Navbar} from '@/components/Navbar';
 import { UserGrowth } from '@/components/UserG';
 import { Revenue } from '@/components/Revenue';
 import { DataTableDemo } from '@/components/DataTable';
@@ -34,27 +31,26 @@ const Dashboard: React.FC = () => {
   }, [initializeWithDummyData]);
 
   return (
-    <div className="h-screen bg-background text-foreground px-4">
+    <div className="min-h-screen bg-background text-foreground px-4">
       <Navbar />
-      <div className="grid grid-cols-6 gap-4">
-        <div className="col-span-4 grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div className="md:col-span-4 grid grid-cols-1 md:grid-cols-3 gap-2">
           <MetricCard title="Total Streams" value={TotalStreams.toLocaleString()} icon={<Play size={20} />} />
           <MetricCard title="Revenue" value={`$${revenue.toLocaleString()}`} icon={<DollarSign size={20} />} />
-          <MetricCard title="Top Artist" value={topArtist}  icon={<User size={20} /> } />
+          <MetricCard title="Top Artist" value={topArtist} icon={<User size={20} />} />
         </div>
-        <div className="col-span-2 row-span-3 flex flex-col">
+        <div className="md:col-span-2 md:row-span-3 flex flex-col gap-4">
           <div className="flex-grow">
             <Revenue />
           </div>
           <div className="flex-grow">
-          <TopStreamed />
+            <TopStreamed />
           </div>
         </div>
-        <div className="col-span-4">  
+        <div className="md:col-span-4">  
           <UserGrowth />
         </div>
-        <div className="col-span-4 bg-card text-card-foreground shadow-md">
-          {/* <h2 className="text-lg font-semibold">Most streamed 5 songs</h2> */}
+        <div className="md:col-span-4 bg-card text-card-foreground shadow-md">
           <DataTableDemo />
         </div>
       </div>
