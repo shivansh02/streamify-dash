@@ -12,8 +12,6 @@ import { TopStreamed } from '@/components/TopStreamed';
 const Dashboard: React.FC = () => {
   const { 
     initializeWithDummyData, 
-    TotalUsers, 
-    ActiveUsers, 
     TotalStreams, 
     revenue, 
     topArtist 
@@ -50,7 +48,7 @@ const Dashboard: React.FC = () => {
         <div className="md:col-span-4">  
           <UserGrowth />
         </div>
-        <div className="md:col-span-4 bg-card text-card-foreground shadow-md">
+        <div className="md:col-span-4 bg-card text-card-foreground shadow-md mt-6 md:mt-2 lg:mt-0">
           <DataTableDemo />
         </div>
       </div>
